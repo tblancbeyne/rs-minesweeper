@@ -1,0 +1,11 @@
+[package]
+name = "gol"
+version = "0.1.0"
+authors = ["Thibault Blanc-Beyne <thibault.blancbeyne@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+sfml = "0.15.1"
+rand = "0.7.3"
