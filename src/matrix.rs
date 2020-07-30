@@ -16,6 +16,7 @@ pub enum Cell {
 pub struct Matrix {
     rows: usize,
     cols: usize,
+    bombs: usize,
     data: Vec<Vec<(Cell, bool, bool)>>,
     scale: f32,
 }
@@ -67,6 +68,7 @@ impl Matrix {
         Matrix {
             rows: size.0,
             cols: size.1,
+            bombs: size.2,
             data: data,
             scale: scale,
         }
@@ -82,6 +84,10 @@ impl Matrix {
 
     pub fn cols(&self) -> usize {
         self.cols
+    }
+
+    pub fn bombs(&self) -> usize {
+        self.bombs
     }
 
     pub fn update_state(&mut self, row: usize, col: usize) -> bool {
@@ -150,6 +156,22 @@ impl Matrix {
                 }
             }
         }
+    }
+
+    pub fn is_finished(&self) -> bool {
+        for i in 0..self.rows {
+            for j in 0..self.cols {
+                match self.data[i][j] {
+                    (Cell::Empty(_), false, _) => {
+                        return false;
+                    }
+
+                    _ => (),
+                }
+            }
+        }
+
+        true
     }
 }
 
